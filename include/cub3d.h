@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:57:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/02/24 18:32:35 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/02/24 18:35:57 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 // # include "parsing.h"
 // # include "rendering.h"
 
-# define WIDTH 1080
+# define WIDTH 1920
 # define HEIGHT 1080
 
 typedef struct s_img
