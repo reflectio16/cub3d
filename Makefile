@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meelma <meelma@student.42.fr>              +#+  +:+       +#+         #
+#    By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/24 14:03:46 by meelma            #+#    #+#              #
-#    Updated: 2026/02/24 14:04:12 by meelma           ###   ########.fr        #
+#    Updated: 2026/02/24 18:32:50 by fmoulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME = cub3d
 
 # === Fichiers sources ===
-SRCS = 
+SRCS = main.c init.c events.c render.c my_mlx_pxl.c
 
 # === Répertoires ===
 SRC_DIR = src
@@ -36,7 +36,7 @@ LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 # === MiniLibX Auto-téléchargement ===
-LINK_MLX = https://cdn.intra.42.fr/document/document/34997/minilibx-linux.tgz
+LINK_MLX = https://cdn.intra.42.fr/document/document/46602/minilibx-linux.tgz
 D_MLX = minilibx-linux
 TAR_MLX = $(D_MLX).tgz
 MLX_DIR = $(D_MLX)
@@ -48,38 +48,38 @@ all: $(LIBFT) $(MLX_LIB) $(NAME)
 
 # === Compilation de Libft ===
 $(LIBFT):
-    @$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE) -C $(LIBFT_DIR)
 
 # === Téléchargement & Compilation de MiniLibX ===
 $(MLX_LIB):
-    @test -d $(MLX_DIR) || $(MAKE) $(TAR_MLX)
-    @$(MAKE) -C $(MLX_DIR)
+	@test -d $(MLX_DIR) || $(MAKE) $(TAR_MLX)
+	@$(MAKE) -C $(MLX_DIR)
 
 $(TAR_MLX):
-    @echo "Téléchargement de MiniLibX..."
-    @curl --output $@ $(LINK_MLX)
-    @tar -xf $@
-    @rm -f $@
+	@echo "Téléchargement de MiniLibX..."
+	@curl --output $@ $(LINK_MLX)
+	@tar -xf $@
+	@rm -f $@
 
 # === Compilation de ton projet ===
 $(NAME): $(OBJS)
-    $(CC) $(CFLAGS) $(IFLAGS) -o $@ $^ $(LIBFT) $(MLX_FLAGS)
+	$(CC) $(CFLAGS) $(IFLAGS) -o $@ $^ $(LIBFT) $(MLX_FLAGS)
 
 # === Compilation des objets ===
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-    @mkdir -p $(OBJ_DIR)
-    $(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 # === Nettoyage ===
 clean:
-    $(RM) -r $(OBJ_DIR)
-    @$(MAKE) -C $(LIBFT_DIR) clean
-    @$(MAKE) -C $(MLX_DIR) clean
+	$(RM) -r $(OBJ_DIR)
+	@$(MAKE) -C $(LIBFT_DIR) clean
+	@$(MAKE) -C $(MLX_DIR) clean
 
 fclean: clean
-    $(RM) $(NAME)
-    @$(MAKE) -C $(LIBFT_DIR) fclean
-    @rm -rf $(MLX_DIR)
+	$(RM) $(NAME)
+	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@rm -rf $(MLX_DIR)
 
 re: fclean all
 
