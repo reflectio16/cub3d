@@ -6,20 +6,26 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:57:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/02/24 14:03:23 by meelma           ###   ########.fr       */
+/*   Updated: 2026/02/25 16:52:15 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 #define CUB3D_H
 
-# include <mlx.h>
+//# include <mlx.h>
 # include <math.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include "defines.h"
-# include "parsing.h"
-# include "rendering.h"
+# include <unistd.h>
+# include <stdio.h>
+# include <errno.h>
+//# include "defines.h"
+//# include "parsing.h"
+//# include "rendering.h"
+
+# include "../Libft/libft.h"
+# include "../gnl/get_next_line.h"
 
 typedef struct s_img
 {
