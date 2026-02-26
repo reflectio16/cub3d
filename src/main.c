@@ -6,16 +6,15 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:58:41 by meelma            #+#    #+#             */
-/*   Updated: 2026/02/26 16:05:29 by meelma           ###   ########.fr       */
+/*   Updated: 2026/02/26 18:54:05 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-#include "../includes/parsing.h"
 
 /* ** Helper Functiom for more readable test output.
 ** Not a part of actual code.
-** Will be deleted later on */
+** Will be deleted later on*/
 static const    char *line_type_to_str(t_line_type type)
 {
     if (type == LINE_EMPTY)
@@ -27,13 +26,14 @@ static const    char *line_type_to_str(t_line_type type)
     else if (type == LINE_MAP)
         return ("MAP");
     return ("INVALID");
-}
+} 
 
 int main(int ac, char** av)
 {
     int     fd;
     int     filenamelen;
     char    *line;
+    t_data  data;
     
     if (ac != 2)
     {
@@ -54,9 +54,17 @@ int main(int ac, char** av)
     }
     while((line = get_next_line(fd)) != NULL)
     {
-        printf("Line Type :[%s] %s", line_type_to_str(get_line_type(line)), line);
+        if (get_line_type(line) == LINE_TEXTURE)
+            parse_texture(line, &data);
+        else
+            printf("Line Type :[%s] %s", line_type_to_str(get_line_type(line)), line);
         free(line);
     }
+    printf(" == Extract Texture Path ===\n");
+    printf("[TEXTURE] NO: %s\n", data.textures.tex_north);
+    printf("[TEXTURE] SO: %s\n", data.textures.tex_south);
+    printf("[TEXTURE] WE: %s\n", data.textures.tex_west);
+    printf("[TEXTURE] EA: %s\n", data.textures.tex_east);
     close(fd);
     return (0);
 }

@@ -6,7 +6,7 @@
 #    By: meelma <meelma@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/24 14:03:46 by meelma            #+#    #+#              #
-#    Updated: 2026/02/26 14:14:36 by meelma           ###   ########.fr        #
+#    Updated: 2026/02/26 18:06:28 by meelma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ NAME = cub3d
 # === Fichiers sources ===
 
 SRC_SRCS = main.c
-PARSE_SRCS = parse_utils.c
-GNL_SRCS = get_next_line.c get_next_line_utils.c \
+PARSE_SRCS = parse_utils.c parse_texture.c 
+GNL_SRCS = get_next_line.c get_next_line_utils.c
 			
 
 OBJS = $(SRC_OBJS) $(PARSE_OBJS) $(GNL_OBJS)

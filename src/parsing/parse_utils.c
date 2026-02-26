@@ -6,12 +6,11 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:47:00 by meelma            #+#    #+#             */
-/*   Updated: 2026/02/26 15:18:50 by meelma           ###   ########.fr       */
+/*   Updated: 2026/02/26 17:30:16 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-#include "../includes/parsing.h"
 
 t_line_type get_line_type(char *line)
 {

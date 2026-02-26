@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:57:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/02/25 16:52:15 by meelma           ###   ########.fr       */
+/*   Updated: 2026/02/26 18:17:47 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <stdio.h>
 # include <errno.h>
 //# include "defines.h"
-//# include "parsing.h"
+# include "parsing.h"
 //# include "rendering.h"
 
 # include "../Libft/libft.h"
@@ -45,13 +45,10 @@ typedef struct s_data
     double  player_x;
     double  player_y;
     double  player_angle;
-    t_img   tex_north;
-    
+    t_texture textures;
+    t_color     colors;
+    // rest of the variables
 
-
-
-
-    
 }   t_data;
 
 #endif
