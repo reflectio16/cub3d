@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:19:28 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/02/26 19:47:59 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/02/27 00:31:45 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ void	map_render(t_mlx *mlx, t_map *map)
 	int		dx;
 	int		dy;
 	int		l;
+	int 	t;
+	double	camera_x;
+	double	ray_x;
+	double	ray_y;
 	
 	// map pixel filling
 	tile = 30;
@@ -90,14 +94,16 @@ void	map_render(t_mlx *mlx, t_map *map)
 	}
 
 	// directional arrow
-
-	int t = 0;
+	camera_x = 0.5;
+	t = 0;
+	ray_x = map->player.dir_x + map->player.plane_x * camera_x;
+	ray_y = map->player.dir_y + map->player.plane_y * camera_x;
 	while (t < l)
 	{
-		x = px + map->player.dir_x * t;
-		y = py + map->player.dir_y * t;
+		x = px + ray_x * t;
+		y = py + ray_y * t;
 		if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
-			handle_pixel(x, y, mlx, 0xFFEE00);
+			handle_pixel((int)x, (int)y, mlx, 0xFFEE00);
 		t++;
 	}	
 	// image on screen
