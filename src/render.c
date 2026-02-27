@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:19:28 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/02/27 00:31:45 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/02/27 17:15:21 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,93 +19,23 @@ void	handle_pixel(int x, int y, t_mlx *mlx, int color)
 
 void	map_render(t_mlx *mlx, t_map *map)
 {
-	int		i;
-	int		j;
-	int		x;
-	int		y;
-	int		pixel_x;
-	int		pixel_y;
-	int		tile;
-	double	px;
-	double	py;
-	int		dx;
-	int		dy;
-	int		l;
-	int 	t;
-	double	camera_x;
-	double	ray_x;
-	double	ray_y;
+	int				tile;
+	t_wall_floor	wf;
+	t_player_pixel	player_pixel;
+	t_ray			ray;
 	
-	// map pixel filling
 	tile = 30;
-	l = tile * 10;
-	i = 0;
-	while (map->map[i])
-	{
-		j = 0;
-		while (map->map[i][j])
-		{
-			if (map->map[i][j] == '1')
-			{
-				y = -1;
-				while (++y < tile)
-				{
-					x = -1;
-					while (++x < tile)
-					{
-						pixel_x = j * tile + x;
-						pixel_y = i * tile + y;
-						handle_pixel(pixel_x, pixel_y, mlx, 0xDD00FF);
-					}
-				}
-			}
-			else if (map->map[i][j] == '0')
-			{
-				y = -1;
-				while (++y < tile)
-				{
-					x = -1;
-					while (++x < tile)
-					{
-						pixel_x = j * tile + x;
-						pixel_y = i * tile + y;
-						handle_pixel(pixel_x, pixel_y, mlx, 0x000000);
-					}
-				}
-			}
-			j++;
-		}
-		i++;
-	}
+	wall_floor_init(&wf);
+	wall_floor_render(tile, &wf, mlx, map);
 
 	// player position pixel filling
-	px = map->player.x * tile;
-	py = map->player.y * tile;
-	dx = -3;
-	while (dx < 3)
-	{
-		dy = -3;
-		while (dy < 3)
-		{
-			handle_pixel((int)(px + dx), (int) (py + dy), mlx, 0xFFEE00);
-			dy++;
-		}
-		dx++;
-	}
+	player_pixel_init(&player_pixel);
+	player_pixel_render(tile, &player_pixel, map, mlx);
 
 	// directional arrow
-	camera_x = 0.5;
-	t = 0;
-	ray_x = map->player.dir_x + map->player.plane_x * camera_x;
-	ray_y = map->player.dir_y + map->player.plane_y * camera_x;
-	while (t < l)
-	{
-		x = px + ray_x * t;
-		y = py + ray_y * t;
-		if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
-			handle_pixel((int)x, (int)y, mlx, 0xFFEE00);
-		t++;
-	}	
+	ray_init(&ray);
+	ray_render(tile, &ray, &player_pixel, &wf, map, mlx);
+	
 	// image on screen
 	mlx_put_image_to_window(mlx->mlx_connection,
 		mlx->mlx_window, mlx->img.img, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:57:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/02/26 17:52:36 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/02/27 17:25:15 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,61 @@ typedef struct s_map
         
 }   t_map;
 
+typedef struct s_wall_floor
+{
+	int		i;
+	int		j;
+	int		x;
+	int		y;
+	int		pixel_x;
+	int		pixel_y;
+	
+}	t_wall_floor;
+
+typedef struct s_player_pixel
+{
+	double	px;
+	double	py;
+	int		dx;
+	int		dy;
+	
+}	t_player_pixel;
+
+typedef struct s_ray
+{
+	double	camera_x[3];
+	double	x;
+	double	y;
+	
+}	t_ray;
+
+//   INIT   //
 void	cub_init(t_mlx *mlx, t_map *map);
 void	map_init(t_map *map);
+void	wall_floor_init(t_wall_floor *wf);
+void	ray_init(t_ray *ray);
 void	player_init(t_map *map);
+void	player_pixel_init(t_player_pixel *player);
+
+//   MEMORY ALLOC   //
+void	map_alloc(t_map *map, int fd);
+
+//   GETTERS   //
+void	get_map(t_map *map, int fd);
+
+//   MLX CTRLS   //
 int		close_handler(t_mlx *mlx);
 int		key_handler(int keysym, t_mlx *mlx);
+
+//   RENDER   //
 void	handle_pixel(int x, int y, t_mlx *mlx, int color);
 void	map_render(t_mlx *mlx, t_map *map);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+void	draw_wall(int tile, t_wall_floor *wf, t_mlx *mlx);
+void	draw_floor(int tile, t_wall_floor *wf, t_mlx *mlx);
+void	wall_floor_render(int tile, t_wall_floor *wf, t_mlx *mlx, t_map *map);
+void	player_pixel_render(int tile, t_player_pixel *player_pixel, t_map *map, t_mlx *mlx);
+void	ray_render(int tile, t_ray *ray, t_player_pixel *player_pixel, t_wall_floor *wf, t_map *map, t_mlx *mlx);
+
 
 #endif

@@ -6,7 +6,7 @@
 #    By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/24 14:03:46 by meelma            #+#    #+#              #
-#    Updated: 2026/02/25 15:05:35 by fmoulin          ###   ########.fr        #
+#    Updated: 2026/02/27 17:16:29 by fmoulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@
 NAME = cub3d
 
 # === Fichiers sources ===
-SRCS = main.c init.c events.c render.c my_mlx_pxl.c
+SRCS = main.c init.c events.c render.c my_mlx_pxl.c \
+		wall_floor_utils.c map_utils.c ray_utils.c player_pixel_utils.c
 
 # === Répertoires ===
 SRC_DIR = src
