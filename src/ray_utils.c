@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 17:11:38 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/03 17:16:46 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/03 18:04:11 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ray_render(int tile, t_map *map, t_mlx *mlx)
 	int		previous_mapY;
 	int		line_len;
 
-	l = tile * 10;
+	l = tile * 100;
 	map->ray.camera_x[0] = -0.4;
 	map->ray.camera_x[1] = 0;
 	map->ray.camera_x[2] = 0.6;

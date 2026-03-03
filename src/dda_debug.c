@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 18:26:10 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/03 17:29:58 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/03 18:00:13 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void get_sideDist(t_map *map)
 
 void	dda_debug_center(t_map *map)
 {
-	map->ray.camera_x[0] = 0;
+	map->ray.camera_x[0] = 0.5;
 	map->dda.posX = map->player.x;
 	map->dda.posY = map->player.y;
 	map->dda.rayDirX = map->player.dir_x;
@@ -65,10 +65,5 @@ void	dda_debug_center(t_map *map)
 	get_deltaDist(map);
 	get_step(map);
 	get_sideDist(map);
-	printf("deltaDistX : %f\n", map->dda.deltaDistX);
-	printf("deltaDistY : %f\n", map->dda.deltaDistY);
-	printf("stepX : %d\n", map->dda.stepX);
-	printf("stepY : %d\n", map->dda.stepY);
-	printf("sideDistX : %f\n", map->dda.sideDistX);
-	printf("sideDistY : %f\n", map->dda.sideDistY);
+
 }
