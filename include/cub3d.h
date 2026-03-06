@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:57:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/05 16:55:23 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/06 19:45:53 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ typedef struct s_wall_floor
 {
 	int		i;
 	int		j;
-	int		x;
-	int		y;
+	double		x;
+	double		y;
 	int		pixel_x;
 	int		pixel_y;
 	
@@ -92,6 +92,7 @@ typedef struct s_player_pixel
 
 typedef struct s_ray
 {
+	double	camera_x;
 	double	x;
 	double	y;
 	
@@ -110,11 +111,12 @@ typedef struct s_contour
 
 typedef struct s_texture
 {
-	int		x;
-	int		y;
+	int			x;
+	int			y;
 	double		wallX;
 	double		wallY;
-	int		width;
+	int			width;
+	int			height;
 	
 }	t_texture;
 
@@ -203,5 +205,8 @@ void	dda_debug_ray(int tile, int x, t_map *map, t_mlx *mlx);
 
 //   DISPLAY   //
 void	display_player_data(t_mlx *mlx, t_map *map);
+
+//   TEXTURES   //
+void	load_texture(t_mlx *mlx, t_img *texture, char *path);
 
 #endif

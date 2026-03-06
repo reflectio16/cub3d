@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:27:03 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/05 14:58:24 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/06 18:58:52 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 		int		fd;
 		int		tile;
 
-		tile = 5;
+		tile = 7;
 		cub_init(&mlx, &map);
 		fd = open(argv[1], O_RDONLY);
 		if (fd < 0)

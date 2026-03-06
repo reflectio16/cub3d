@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 15:11:40 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/05 16:46:18 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/06 19:53:48 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,22 @@ void	draw_ceiling(int y, t_map *map, t_mlx *mlx)
 
 void	draw_wall(int x, int y, t_map *map, t_mlx *mlx)
 {
-	int	shade;
-	int	color;
+	// int	shade;
+	// int	color;
 
-	shade = map->tex.x * 255 / (map->tex.width - 1);
-	color = 0;
+	// shade = map->tex.x * 255 / (map->tex.width - 1);
+	// color = 0;
+	t_img *current_tex;
+
+	current_tex = &map->tex_north;
 	if (map->dda.side == 0)
 	{
 		map->dda.screenX = x;
 		y = map->dda.drawStart;
 		while (y < map->dda.drawEnd)
 		{
-			color = (shade << 16);
-			handle_pixel(map->dda.screenX, y, mlx, color);
+			// color = (shade << 16);
+			handle_pixel(map->dda.screenX, y, mlx, );
 			y++;
 		}
 	}
@@ -45,7 +48,7 @@ void	draw_wall(int x, int y, t_map *map, t_mlx *mlx)
 		y = map->dda.drawStart;
 		while (y < map->dda.drawEnd)
 		{
-			color = (shade << 8);
+			// color = (shade << 8);
 			handle_pixel(map->dda.screenX, y, mlx, color);
 			y++;
 		}

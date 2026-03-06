@@ -1,0 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   load_texture.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/06 18:50:00 by fmoulin           #+#    #+#             */
+/*   Updated: 2026/03/06 19:42:45 by fmoulin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+void	load_texture(t_mlx *mlx, t_img *texture, char *path)
+{
+	mlx_xpm_file_to_image(mlx, path, texture->width, texture->height);
+	if (texture->img == 0)
+	{
+		perror("no texture img detected\n");
+		exit(EXIT_FAILURE);
+	}
+	texture->addr = mlx_get_data_addr(texture->img, &texture->bpp, &texture->line_len, &texture->endian);
+	if (texture->addr == 0)
+	{
+		perror("no texture addr detected\n");
+		exit(EXIT_FAILURE);
+	}
+}

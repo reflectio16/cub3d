@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:44:00 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/03 18:02:50 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/06 18:56:40 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,13 @@ void	player_init(t_map *map)
 		i++;
 	}
 }
+
+// void	texture_init(t_map *map)
+// {
+// 	map->tex.width = ;
+// 	map->tex.height = ;
+
+// }
 
 void	cub_init(t_mlx *mlx, t_map *map)
 {
