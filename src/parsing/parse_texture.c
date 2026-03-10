@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 17:26:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/10 14:04:50 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/10 16:06:33 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ int	parse_texture(char *line, t_data *data)
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	path = ft_substr(line, i, len - i - 1);
-	if (!path)
-		return (-1);
+	if (!path || path[0] == '\0')
+	{
+		free(path);
+		return (print_error("Empty texture path"));
+	}
 	if (ft_strncmp(line, "NO", 2) == 0)
 		return (assign_texture(&data->textures.tex_north, path));
 	else if (ft_strncmp(line, "SO", 2) == 0)

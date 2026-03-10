@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:47:00 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/10 14:29:34 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/10 15:07:17 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	free_data(t_data *data)
 		free_split(data->map);
 }
 
-int	clean_exit(int fd, char *line, int ret)
+int	clean_exit(int fd, char *line, t_list **map_list)
 {
 	char	*tmp;
 
@@ -79,6 +79,8 @@ int	clean_exit(int fd, char *line, int ret)
 			break ;
 		free(tmp);
 	}
+	if (map_list && *map_list)
+		ft_lstclear(map_list, free);
 	close(fd);
-	return (ret);
+	return (-1);
 }

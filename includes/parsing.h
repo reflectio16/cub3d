@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:49:45 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/10 14:22:46 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/10 15:07:44 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void        free_split(char **arr);
 t_line_type get_line_type(char *line);
 int         print_error(char *msg);
 void        free_data(t_data *data);
-int         clean_exit(int fd, char *line, int ret);
+int         clean_exit(int fd, char *line, t_list **map_list);
 
 /* === Parser Functions === */ 
 int         parse_texture(char *line, t_data *data);

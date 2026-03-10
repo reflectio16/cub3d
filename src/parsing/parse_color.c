@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 13:46:44 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/10 14:00:33 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/10 15:58:04 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,20 @@ static int	rgb_to_int(int r, int g, int b)
 	return ((r << 16) | (g << 8) | b);
 }
 
+static int	is_valid_color(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != '\n')
+	{
+		if (!ft_isdigit(str[i]) && str[i] != ',' && str[i] != ' ')
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
 static int	extract_rgb(char *str)
 {
 	char	**rgb;
@@ -24,7 +38,15 @@ static int	extract_rgb(char *str)
 	int		g;
 	int		b;
 
+	if (is_valid_color(str) == -1)
+		return (-1);
 	rgb = ft_split(str, ',');
+	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
+	{
+		if (rgb)
+			free_split(rgb);
+		return (-1);
+	}
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);

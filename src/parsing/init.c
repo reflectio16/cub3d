@@ -6,26 +6,36 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 14:14:48 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/10 14:27:18 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/10 16:17:05 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static int	process_line(char *line, t_data *data, t_list **map_list)
+static int	process_line(char *line, t_data *data, t_list **map_list,
+	int *in_map)
 {
 	if (get_line_type(line) == LINE_TEXTURE)
 	{
+		if (*in_map)
+			return (print_error("Texture path after map"));
 		if (parse_texture(line, data) == -1)
 			return (-1);
 	}
 	else if (get_line_type(line) == LINE_COLOR)
 	{
+		if (*in_map)
+			return (print_error("Color path after map"));
 		if (parse_color(line, data) == -1)
 			return (-1);
 	}
 	else if (get_line_type(line) == LINE_MAP)
+	{
+		*in_map = 1;
 		add_map_line(line, map_list);
+	}
+	else if (get_line_type(line) == LINE_EMPTY && *in_map)
+		return (print_error("Empty line in map"));
 	return (0);
 }
 
@@ -33,7 +43,9 @@ int	parse_file(char *filename, t_data *data, t_list **map_list)
 {
 	int		fd;
 	char	*line;
+	int		in_map;
 
+	in_map = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (print_error("Cannot open file"));
@@ -42,8 +54,8 @@ int	parse_file(char *filename, t_data *data, t_list **map_list)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		if (process_line(line, data, map_list) == -1)
-			return (clean_exit(fd, line, -1));
+		if (process_line(line, data, map_list, &in_map) == -1)
+			return (clean_exit(fd, line, map_list));
 		free(line);
 	}
 	close(fd);
