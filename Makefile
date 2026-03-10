@@ -6,13 +6,13 @@
 #    By: meelma <meelma@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/24 14:03:46 by meelma            #+#    #+#              #
-#    Updated: 2026/03/09 14:16:42 by meelma           ###   ########.fr        #
+#    Updated: 2026/03/10 17:48:18 by meelma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 # === Nom de l'exécutable ===
-NAME = cub3d
+NAME = cub3D
 
 # === Fichiers sources ===
 

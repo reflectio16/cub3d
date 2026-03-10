@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 17:26:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/10 16:06:33 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/10 18:19:15 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 static int	assign_texture(char **tex, char *path)
 {
+	int	len;
+
+	len = ft_strlen(path);
+	if (len < 4 || ft_strncmp(&path[len - 4], ".xpm", 4) != 0)
+		return (print_error("Invalid texture extention"));
 	if (*tex != NULL)
 	{
 		free(path);
@@ -22,6 +27,24 @@ static int	assign_texture(char **tex, char *path)
 	}
 	*tex = path;
 	return (0);
+}
+
+static int	validate_texture_path(char *path)
+{
+	int	len;
+	//int	fd;
+	
+	if (!path || path[0] == '\0')
+		return (print_error("Empty texture path"));
+	len = ft_strlen(path);
+	if (len < 4 || ft_strncmp(&path[len - 4], ".xpm", 4) != 0)
+		return (print_error("Invalid texture extension"));
+	// File existence check - will uncomment after .xpm files integration
+	//fd = open(path, O_RDONLY);
+	//if (fd == -1)
+	//	return (print_error("Texture file not found"));
+	//close(fd);
+	return (0); 
 }
 
 int	parse_texture(char *line, t_data *data)
@@ -37,10 +60,10 @@ int	parse_texture(char *line, t_data *data)
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	path = ft_substr(line, i, len - i - 1);
-	if (!path || path[0] == '\0')
+	if (validate_texture_path(path) == -1)
 	{
 		free(path);
-		return (print_error("Empty texture path"));
+		return (-1);
 	}
 	if (ft_strncmp(line, "NO", 2) == 0)
 		return (assign_texture(&data->textures.tex_north, path));
