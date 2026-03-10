@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:44:00 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/10 16:03:26 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/10 16:39:59 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ static void	malloc_error(void)
 	exit(EXIT_FAILURE);
 }
 
-void	events_init(t_mlx *mlx)
+void	events_init(t_game *game)
 {
-	mlx_hook(mlx->mlx_window, KeyPress, KeyPressMask,
-		key_handler, mlx);
-	mlx_hook(mlx->mlx_window, DestroyNotify, StructureNotifyMask,
-		close_handler, mlx);
+	mlx_hook(game->mlx.mlx_window, KeyPress, KeyPressMask,
+		key_handler, &game->mlx);
+	mlx_hook(game->mlx.mlx_window, DestroyNotify, StructureNotifyMask,
+		close_handler, &game->mlx);
 }
 
 void	map_init(t_map *map)
@@ -103,7 +103,7 @@ void	player_init(t_map *map)
 
 // }
 
-void	cub_init(t_mlx *mlx, t_map *map)
+void	cub_init(t_game *game, t_mlx *mlx, t_map *map)
 {
 	mlx->mlx_connection = mlx_init();
 	if (mlx->mlx_connection == NULL)
@@ -127,7 +127,7 @@ void	cub_init(t_mlx *mlx, t_map *map)
 		&mlx->img.bpp,
 		&mlx->img.line_len,
 		&mlx->img.endian);
-	events_init(mlx);
+	events_init(game);
 	
 	map_init(map);
 	load_all_textures(mlx, map);

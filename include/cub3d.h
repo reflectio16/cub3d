@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:57:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/10 16:15:05 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/10 17:35:44 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,8 +162,15 @@ typedef struct s_map
 		
 }   t_map;
 
+typedef struct s_game
+{
+	t_mlx	mlx;
+	t_map	map;
+	int		tile;
+}	t_game;
+
 //   INIT   //
-void	cub_init(t_mlx *mlx, t_map *map);
+void	cub_init(t_game *game, t_mlx *mlx, t_map *map);
 void	map_init(t_map *map);
 void	player_init(t_map *map);
 
@@ -176,8 +183,10 @@ int		get_line_width(t_map *map, int current_line);
 
 //   MLX CTRLS   //
 int		close_handler(t_mlx *mlx);
-int		key_handler(int keysym, t_mlx *mlx, t_map *map);
-void	rotate_player(t_map *map, int rot);
+int		key_handler(int keysym, t_game *game);
+void	rotate_player(t_map *map, double rot);
+void	move_forward(t_map *map);
+void	move_backward(t_map *map);
 
 
 //   RENDER   //

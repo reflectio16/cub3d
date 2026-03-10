@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 17:11:38 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/10 15:47:40 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/10 17:04:07 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ray_render(int tile, t_map *map, t_mlx *mlx)
 	int		previous_mapY;
 	int		line_len;
 
-	l = tile * 10;
+	l = tile * 100;
 	x = 0;
 	while (x < WIDTH - 1)
 	{

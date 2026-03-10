@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:27:03 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/06 18:58:52 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/10 16:53:14 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,28 @@ int main(int argc, char **argv)
 	}
 	else
 	{
-		t_mlx	mlx;
-		t_map	map;
+		// t_mlx	mlx;
+		// t_map	map;
+		t_game	game;
 		int		fd;
-		int		tile;
 
-		tile = 7;
-		cub_init(&mlx, &map);
+		game.tile = 7;
+		cub_init(&game, &game.mlx, &game.map);
 		fd = open(argv[1], O_RDONLY);
 		if (fd < 0)
 		{
 			perror("Error with the file descriptor");
 			return (1);
 		}
-		map_alloc(&map, fd);
+		map_alloc(&game.map, fd);
 		close(fd);
 		
 		fd = open(argv[1], O_RDONLY);
-		get_map(&map,fd);
+		get_map(&game.map,fd);
 		close(fd);
 		
-		player_init(&map);
-		cub_render(&mlx, &map, tile);
-		mlx_loop(mlx.mlx_connection);
+		player_init(&game.map);
+		cub_render(&game.mlx, &game.map, game.tile);
+		mlx_loop(game.mlx.mlx_connection);
 	}
 }
