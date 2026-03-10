@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:57:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/10 17:35:44 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/10 21:38:21 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,8 @@ int		key_handler(int keysym, t_game *game);
 void	rotate_player(t_map *map, double rot);
 void	move_forward(t_map *map);
 void	move_backward(t_map *map);
+void	move_right(t_map *map);
+void	move_left(t_map *map);
 
 
 //   RENDER   //

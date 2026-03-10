@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 17:22:41 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/10 17:36:16 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/10 21:38:43 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,16 @@ int	key_handler(int keysym, t_game *game)
 	if (keysym == XK_s)
 	{
 		move_backward(&game->map);
+		cub_render(&game->mlx, &game->map, game->tile);
+	}
+	if (keysym == XK_d)
+	{
+		move_right(&game->map);
+		cub_render(&game->mlx, &game->map, game->tile);
+	}
+	if (keysym == XK_a)
+	{
+		move_left(&game->map);
 		cub_render(&game->mlx, &game->map, game->tile);
 	}
 	// manage W, A, S, and D keys 
