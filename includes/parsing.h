@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:49:45 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/09 16:00:47 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/10 14:22:46 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int         validate_map(t_data *data);
 int         check_map_closed(t_data *data);
 
 /* === Init. c === */
-int         check_args(int ac, char *filename);
 int         parse_file(char *filename, t_data *data, t_list **map_list);
 int         setup_map(t_data *data, t_list *map_list);
 
