@@ -6,11 +6,11 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:58:41 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/10 14:22:32 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/12 18:41:06 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../include/cub3d.h"
 
 static int	check_args(int ac, char *filename)
 {
@@ -26,28 +26,33 @@ static int	check_args(int ac, char *filename)
 
 int	main(int ac, char **av)
 {
-	t_data	data;
+	t_game	game;
 	t_list	*map_list;
 
 	map_list = NULL;
-	ft_memset(&data, 0, sizeof(t_data));
-	data.colors.floor_color = -1;
-	data.colors.ceiling_color = -1;
+	ft_memset(&game, 0, sizeof(t_game));
+	game.data.colors.floor = -1;
+	game.data.colors.ceiling = -1;
 	if (check_args(ac, av[1]) == -1)
 		return (1);
-	if (parse_file(av[1], &data, &map_list) == -1)
+	if (parse_file(av[1], &game.data, &map_list) == -1)
 	{
-		free_data(&data);
+		free_data(&game.data);
 		return (1);
 	}
-	if (setup_map(&data, map_list) == -1)
+	if (setup_map(&game.data, map_list) == -1)
 	{
-		free_data(&data);
+		free_data(&game.data);
 		return (1);
 	}
-        
-    // Game starting code here
+	plane_init(&game.data, 0.66);
 	
-	free_data(&data);
+	// Game initialization
+	game.data.tile = 7;
+	cub_init(&game, &game.mlx, &game.data);
+	
+	cub_render(&game.mlx, &game.data, game.data.tile);
+	mlx_loop(game.mlx.connection);
+	free_data(&game.data);
 	return (0);
 }

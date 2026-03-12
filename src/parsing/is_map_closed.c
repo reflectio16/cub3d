@@ -6,11 +6,11 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 13:06:07 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/12 13:33:21 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/12 17:11:20 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../include/cub3d.h"
 
 static int  is_walkable(char c)
 {
@@ -89,8 +89,8 @@ int	check_map_closed(t_data *data)
     map_copy = copy_map(data->map, data->map_height);
 	if (!map_copy)
 		return (-1);
-	result = flood_fill(map_copy, data->player_x,
-        data->player_y, data->map_height);
+	result = flood_fill(map_copy, (int)data->player.x,
+        (int)data->player.y, data->map_height);
 	free_split(map_copy);
 	return (result);
 }

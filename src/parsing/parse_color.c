@@ -6,11 +6,11 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 13:46:44 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/11 14:06:52 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/12 16:55:33 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../include/cub3d.h"
 
 static int	rgb_to_int(int r, int g, int b)
 {
@@ -72,15 +72,15 @@ int	parse_color(char *line, t_data *data)
 		return (print_error("Invalid color format"));
 	if (line[0] == 'F')
 	{
-		if (data->colors.floor_color != -1)
+		if (data->colors.floor != -1)
 			return (print_error("Duplicate color path"));
-		data->colors.floor_color = color;
+		data->colors.floor = color;
 	}
 	else if (line[0] == 'C')
 	{
-		if (data->colors.ceiling_color != -1)
+		if (data->colors.ceiling != -1)
 			return (print_error("Duplicate color path"));
-		data->colors.ceiling_color = color;
+		data->colors.ceiling = color;
 	}
 	return (0);
 }

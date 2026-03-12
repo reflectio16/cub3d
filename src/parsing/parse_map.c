@@ -6,11 +6,11 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 13:08:15 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/10 13:48:22 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/12 18:29:21 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../include/cub3d.h"
 
 int	add_map_line(char *line, t_list **map_list)
 {
@@ -77,16 +77,28 @@ static int	loop_map(t_data *data, int row, int col)
 	if (data->map[row][col] == 'N' || data->map[row][col] == 'S'
 			|| data->map[row][col] == 'E' || data->map[row][col] == 'W')
 	{
-		data->player_x = col + 0.5;
-		data->player_y = row + 0.5;
+		data->player.x = col + 0.5;
+		data->player.y = row + 0.5;
 		if (data->map[row][col] == 'N')
-			data->player_angle = 1.5 * M_PI;
+		{
+			data->player.dir_x = 0;
+			data->player.dir_y = -1;
+		}
 		else if (data->map[row][col] == 'S')
-			data->player_angle = 0.5 * M_PI;
+		{
+			data->player.dir_x = 0;
+			data->player.dir_y = 1;
+		}
 		else if (data->map[row][col] == 'E')
-			data->player_angle = 0;
+		{
+			data->player.dir_x = 1;
+			data->player.dir_y = 0;
+		}
 		else if (data->map[row][col] == 'W')
-			data->player_angle = M_PI;
+		{
+			data->player.dir_x = -1;
+			data->player.dir_y = 0;
+		}
 		return (0);
 	}
 	return (-1);

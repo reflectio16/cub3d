@@ -6,11 +6,11 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 14:14:48 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/10 16:17:05 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/12 16:57:01 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../include/cub3d.h"
 
 static int	process_line(char *line, t_data *data, t_list **map_list,
 	int *in_map)
@@ -64,20 +64,20 @@ int	parse_file(char *filename, t_data *data, t_list **map_list)
 
 static int	validate_textures(t_data *data)
 {
-	if (!data->textures.tex_north)
+	if (!data->textures.north)
 		return (print_error("Missing Texture: NO"));
-	if (!data->textures.tex_south)
+	if (!data->textures.south)
 		return (print_error("Missing Texture: SO"));
-	if (!data->textures.tex_west)
+	if (!data->textures.west)
 		return (print_error("Missing texture: WE"));
-	if (!data->textures.tex_east)
+	if (!data->textures.east)
 		return (print_error("Missing texture: EA"));
 	return (0);
 }
 
 static int	validate_colors(t_data *data)
 {
-	if (data->colors.floor_color == -1 || data->colors.ceiling_color == -1)
+	if (data->colors.floor == -1 || data->colors.ceiling == -1)
 		return (print_error("Missing color path"));
 	return (0);
 }

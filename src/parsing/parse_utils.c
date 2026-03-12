@@ -6,23 +6,21 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:47:00 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/10 15:07:17 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/12 17:50:22 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../include/cub3d.h"
 
-void	free_split(char **arr)
+int	get_line_width(t_data *data, int current_line)
 {
-	int	i;
+	int	j;
 
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
+	j = 0;
+	while (data->map[current_line][j] != '\n'
+		&& data->map[current_line][j] != '\0')
+		j++;
+	return (j);
 }
 
 t_line_type	get_line_type(char *line)
@@ -53,34 +51,3 @@ int	print_error(char *msg)
 	return (-1);
 }
 
-void	free_data(t_data *data)
-{
-	if (data->textures.tex_north)
-		free(data->textures.tex_north);
-	if (data->textures.tex_south)
-		free(data->textures.tex_south);
-	if (data->textures.tex_west)
-		free(data->textures.tex_west);
-	if (data->textures.tex_east)
-		free(data->textures.tex_east);
-	if (data->map)
-		free_split(data->map);
-}
-
-int	clean_exit(int fd, char *line, t_list **map_list)
-{
-	char	*tmp;
-
-	free(line);
-	while (1)
-	{
-		tmp = get_next_line(fd);
-		if (tmp == NULL)
-			break ;
-		free(tmp);
-	}
-	if (map_list && *map_list)
-		ft_lstclear(map_list, free);
-	close(fd);
-	return (-1);
-}

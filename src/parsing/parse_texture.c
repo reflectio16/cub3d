@@ -6,11 +6,11 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 17:26:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/11 14:15:10 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/12 16:53:22 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../include/cub3d.h"
 
 static int	assign_texture(char **tex, char *path)
 {
@@ -65,12 +65,12 @@ int	parse_texture(char *line, t_data *data)
 	if (validate_texture_path(path) == -1)
 		return (free(path), -1);
 	if (ft_strncmp(line, "NO", 2) == 0)
-		return (assign_texture(&data->textures.tex_north, path));
+		return (assign_texture(&data->textures.north, path));
 	else if (ft_strncmp(line, "SO", 2) == 0)
-		return (assign_texture(&data->textures.tex_south, path));
+		return (assign_texture(&data->textures.south, path));
 	else if (ft_strncmp(line, "WE", 2) == 0)
-		return (assign_texture(&data->textures.tex_west, path));
+		return (assign_texture(&data->textures.west, path));
 	else if (ft_strncmp(line, "EA", 2) == 0)
-		return (assign_texture(&data->textures.tex_east, path));
+		return (assign_texture(&data->textures.east, path));
 	return (free(path), -1);
 }
