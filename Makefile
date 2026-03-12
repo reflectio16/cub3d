@@ -6,7 +6,7 @@
 #    By: meelma <meelma@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/24 14:03:46 by meelma            #+#    #+#              #
-#    Updated: 2026/03/10 17:48:18 by meelma           ###   ########.fr        #
+#    Updated: 2026/03/12 13:29:21 by meelma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ NAME = cub3D
 SRC_SRCS	= main.c
 GNL_SRCS	= get_next_line.c get_next_line_utils.c
 PARSE_SRCS  = parse_utils.c parse_texture.c parse_color.c \
-              parse_map.c validate_map.c flood_fill.c init.c
+              parse_map.c validate_map.c flood_fill.c init.c \
+			  is_map_closed.c
 
 OBJS = $(SRC_OBJS) $(PARSE_OBJS) $(GNL_OBJS)
 

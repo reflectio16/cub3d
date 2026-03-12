@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:49:45 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/10 15:07:44 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/12 13:32:05 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char        **list_to_array(t_list *list, int *height);
 int         get_map_width(char **map);
 int         find_player(t_data *data);
 int         validate_map(t_data *data);
+int         flood_fill(char **map, int x, int y, int height);
 int         check_map_closed(t_data *data);
 
 /* === Init. c === */
