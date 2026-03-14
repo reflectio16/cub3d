@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 13:06:07 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/14 14:14:24 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/14 17:35:39 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,24 +58,27 @@ static int  check_sides(char **map, int height)
     return (0);
 }
 
-static char	**copy_map(char **map, int height)
+static int	flood_all_walkable(char **map, int height)
 {
-	char	**copy;
-	int		i;
+	int	i;
+	int	j;
 
-	copy = malloc(sizeof(char *) * (height + 1));
-	if (!copy)
-		return (NULL);
-	i = 0;
-	while (i < height)
+	i = -1;
+	while (++i < height)
 	{
-		copy[i] = ft_strdup(map[i]);
-		if (!copy[i])
-			return (NULL);
-		i++;
+		j = -1;
+		while (map[i][++j])
+		{
+			if (map[i][j] == '0' || map[i][j] == 'N'
+				|| map[i][j] == 'S' || map[i][j] == 'E'
+				|| map[i][j] == 'W')
+			{
+				if (flood_fill(map, j, i, height) == -1)
+					return (-1);
+			}
+		}
 	}
-	copy[i] = NULL;
-	return (copy);
+	return (0);
 }
 
 int	check_map_closed(t_data *data)
@@ -83,15 +86,14 @@ int	check_map_closed(t_data *data)
 	char	**map_copy;
 	int		result;
 
-    if (check_top_bottom(data->map, data->map_height) == -1)
-        return (-1);
-    if (check_sides(data->map, data->map_height) == -1)
-        return (-1);
-    map_copy = copy_map(data->map, data->map_height);
+	if (check_top_bottom(data->map, data->map_height) == -1)
+		return (-1);
+	if (check_sides(data->map, data->map_height) == -1)
+		return (-1);
+	map_copy = copy_map(data->map, data->map_height);
 	if (!map_copy)
 		return (-1);
-	result = flood_fill(map_copy, (int)data->player.x,
-        (int)data->player.y, data->map_height);
+	result = flood_all_walkable(map_copy, data->map_height);
 	free_split(map_copy);
 	return (result);
 }

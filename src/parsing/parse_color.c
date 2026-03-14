@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 13:46:44 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/14 14:02:52 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/14 17:11:26 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,37 @@ static int	is_valid_color(char *str)
 	return (0);
 }
 
-static int	extract_rgb(char *str)
+static int	is_pure_number(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] == ' ')
+		i++;
+	if (str[i] == '\0')
+		return (0);
+	while (ft_isdigit(str[i]))
+		i++;
+	while (str[i] == ' ')
+		i++;
+	if (str[i] != '\0' && str[i] != '\n')
+		return (0);
+	return (1);
+}
+
+static int	validate_rgb_parts(char **rgb)
+{
+	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2] || rgb[3]
+		|| rgb[0][0] == '\0' || rgb[1][0] == '\0'
+		|| rgb[2][0] == '\0' || rgb[2][0] == '\n')
+		return (-1);
+	if (!is_pure_number(rgb[0]) || !is_pure_number(rgb[1])
+		|| !is_pure_number(rgb[2]))
+		return (-1);
+	return (0);
+}
+
+int	extract_rgb(char *str)
 {
 	char	**rgb;
 	int		r;
@@ -41,9 +71,7 @@ static int	extract_rgb(char *str)
 	if (is_valid_color(str) == -1)
 		return (-1);
 	rgb = ft_split(str, ',');
-	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2] || rgb[3]
-		|| rgb[0][0] == '\0' || rgb[1][0] == '\0'
-		|| rgb[2][0] == '\0' || rgb[2][0] == '\n')
+	if (validate_rgb_parts(rgb) == -1)
 	{
 		if (rgb)
 			free_split(rgb);
@@ -57,30 +85,4 @@ static int	extract_rgb(char *str)
 		&& (b >= 0 && b <= 255))
 		return (rgb_to_int(r, g, b));
 	return (-1);
-}
-
-int	parse_color(char *line, t_data *data)
-{
-	int	i;
-	int	color;
-
-	i = 1;
-	while (line[i] == ' ' || line[i] == '\t')
-		i++;
-	color = extract_rgb(&line[i]);
-	if (color == -1)
-		return (print_error("Invalid color format"));
-	if (line[0] == 'F')
-	{
-		if (data->colors.floor != -1)
-			return (print_error("Duplicate color path"));
-		data->colors.floor = color;
-	}
-	else if (line[0] == 'C')
-	{
-		if (data->colors.ceiling != -1)
-			return (print_error("Duplicate color path"));
-		data->colors.ceiling = color;
-	}
-	return (0);
 }

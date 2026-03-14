@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 13:47:00 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/14 14:22:38 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/14 17:29:39 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,26 @@ t_line_type	get_line_type(char *line)
 		|| line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
 		return (LINE_MAP);
 	return (LINE_INVALID);
+}
+
+char	**copy_map(char **map, int height)
+{
+	char	**copy;
+	int		i;
+
+	copy = malloc(sizeof(char *) * (height + 1));
+	if (!copy)
+		return (NULL);
+	i = 0;
+	while (i < height)
+	{
+		copy[i] = ft_strdup(map[i]);
+		if (!copy[i])
+			return (NULL);
+		i++;
+	}
+	copy[i] = NULL;
+	return (copy);
 }
 
 int	print_error(char *msg)
