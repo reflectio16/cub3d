@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 13:08:15 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/14 14:12:11 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/16 15:36:12 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,58 +72,39 @@ int	get_map_width(char **map)
 	return (max_width);
 }
 
-static int	loop_map(t_data *data, int row, int col)
+static void	set_player_dir(t_data *data, char c)
+{
+	if (c == 'N')
+	{
+		data->player.dir_x = 0;
+		data->player.dir_y = -1;
+	}
+	else if (c == 'S')
+	{
+		data->player.dir_x = 0;
+		data->player.dir_y = 1;
+	}
+	else if (c == 'E')
+	{
+		data->player.dir_x = 1;
+		data->player.dir_y = 0;
+	}
+	else if (c == 'W')
+	{
+		data->player.dir_x = -1;
+		data->player.dir_y = 0;
+	}
+}
+
+int	loop_map(t_data *data, int row, int col)
 {
 	if (data->map[row][col] == 'N' || data->map[row][col] == 'S'
-			|| data->map[row][col] == 'E' || data->map[row][col] == 'W')
+		|| data->map[row][col] == 'E' || data->map[row][col] == 'W')
 	{
 		data->player.x = col + 0.5;
 		data->player.y = row + 0.5;
-		if (data->map[row][col] == 'N')
-		{
-			data->player.dir_x = 0;
-			data->player.dir_y = -1;
-		}
-		else if (data->map[row][col] == 'S')
-		{
-			data->player.dir_x = 0;
-			data->player.dir_y = 1;
-		}
-		else if (data->map[row][col] == 'E')
-		{
-			data->player.dir_x = 1;
-			data->player.dir_y = 0;
-		}
-		else if (data->map[row][col] == 'W')
-		{
-			data->player.dir_x = -1;
-			data->player.dir_y = 0;
-		}
+		set_player_dir(data, data->map[row][col]);
 		return (0);
-	}
-	return (-1);
-}
-
-int	find_player(t_data *data)
-{
-	int	row;
-	int	col;
-
-	row = 0;
-	while (data->map[row])
-	{
-		col = 0;
-		while (data->map[row][col])
-		{
-			if (loop_map(data, row, col) == 0)
-			{
-				plane_init(data, 0.66);
-				data->map[row][col] = '0';
-				return (0);
-			}
-			col++;
-		}
-		row++;
 	}
 	return (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 17:26:22 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/14 14:27:23 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/16 15:48:44 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	validate_texture_path(char *path)
 {
 	int	len;
 	int	fd;
-	
+
 	if (!path || path[0] == '\0')
 		return (print_error("Empty texture path"));
 	len = ft_strlen(path);
@@ -43,7 +43,7 @@ static int	validate_texture_path(char *path)
 	if (fd == -1)
 		return (print_error("Texture file not found"));
 	close(fd);
-	return (0); 
+	return (0);
 }
 
 int	parse_texture(char *line, t_data *data)

@@ -6,56 +6,56 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 13:06:07 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/14 17:35:39 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/16 15:47:16 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int  is_walkable(char c)
+static int	is_walkable(char c)
 {
-    return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
+	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-static int  check_top_bottom(char **map, int height)
+static int	check_top_bottom(char **map, int height)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (map[0][i] && map[0][i] != '\n')
-    {
-        if (is_walkable(map[0][i]))
-            return (-1);
-        i++;
-    }
-    i = 0;
-    while (map[height - 1][i] && map[height - 1][i] != '\n')
-    {
-        if (is_walkable(map[height - 1][i]))
-            return (-1);
-        i++;
-    }
-    return (0);
+	i = 0;
+	while (map[0][i] && map[0][i] != '\n')
+	{
+		if (is_walkable(map[0][i]))
+			return (-1);
+		i++;
+	}
+	i = 0;
+	while (map[height - 1][i] && map[height - 1][i] != '\n')
+	{
+		if (is_walkable(map[height - 1][i]))
+			return (-1);
+		i++;
+	}
+	return (0);
 }
 
-static int  check_sides(char **map, int height)
+static int	check_sides(char **map, int height)
 {
-    int i;
-    int len;
+	int	i;
+	int	len;
 
-    i = 0;
-    while (i < height)
-    {
-        len = ft_strlen(map[i]);
-        if (len > 0 && map[i][len - 1] == '\n')
-            len--;
-        if (is_walkable(map[i][0]))
-            return (-1);
-        if (len > 0 && is_walkable(map[i][len -1]))
-            return (-1);
-        i++;
-    }
-    return (0);
+	i = 0;
+	while (i < height)
+	{
+		len = ft_strlen(map[i]);
+		if (len > 0 && map[i][len - 1] == '\n')
+			len--;
+		if (is_walkable(map[i][0]))
+			return (-1);
+		if (len > 0 && is_walkable(map[i][len -1]))
+			return (-1);
+		i++;
+	}
+	return (0);
 }
 
 static int	flood_all_walkable(char **map, int height)
