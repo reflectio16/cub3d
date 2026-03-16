@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:44:00 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/14 14:17:36 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/16 16:35:49 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,6 @@ void	plane_init(t_data *map, double k)
 	map->player.plane_x = -map->player.dir_y * k;
 	map->player.plane_y = map->player.dir_x * k;
 }
-
-// void	texture_init(t_data *map)
-// {
-// 	map->tex.width = ;
-// 	map->tex.height = ;
-
-// }
 
 void	cub_init(t_game *game, t_mlx *mlx, t_data *map)
 {

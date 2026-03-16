@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meelma <meelma@student.42.fr>              +#+  +:+       +#+         #
+#    By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/24 14:03:46 by meelma            #+#    #+#              #
-#    Updated: 2026/03/16 15:37:15 by meelma           ###   ########.fr        #
+#    Updated: 2026/03/16 18:02:56 by fmoulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ PARSE_SRCS  = parse_utils.c parse_texture.c parse_color.c \
               parse_map.c validate_map.c flood_fill.c init.c \
               is_map_closed.c clean.c parse_color_02.c parse_map_02.c
 RENDER_SRCS = render.c events.c move.c rotation.c my_mlx_pxl.c \
-              dda_debug.c c_w_f_render.c display_data.c load_texture.c \
-              wall_floor_utils.c ray_utils.c player_pixel_utils.c game_init.c
+              dda_debug.c c_w_f_render.c load_texture.c wall_floor_utils.c \
+              ray_utils.c player_pixel_utils.c game_init.c tile_contour.c
 
 # === Object Files ===
 OBJS = $(SRC_OBJS) $(PARSE_OBJS) $(GNL_OBJS) $(RENDER_OBJS)
@@ -51,7 +51,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 MLX_DIR = minilibx-linux
 MLX_LIB = $(MLX_DIR)/libmlx.a
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext -lm
-LINK_MLX = https://cdn.intra.42.fr/document/document/34997/minilibx-linux.tgz
+LINK_MLX = https://cdn.intra.42.fr/document/document/46602/minilibx-linux.tgz
 TAR_MLX = $(MLX_DIR).tgz
 
 # === Default Rule ===

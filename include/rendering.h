@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 15:00:00 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/14 15:02:32 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/16 16:30:16 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void		player_pixel_render(int tile, t_data *data, t_mlx *mlx);
 /* ray_utils.c */
 void		ray_render(int tile, t_data *data, t_mlx *mlx);
 
-/* display_data.c */
-void		display_data(t_mlx *mlx, t_data *data);
+/* tile_contour */
+void		tile_contour_render(int tile, t_data *map, t_mlx *mlx, int color);
 
 #endif

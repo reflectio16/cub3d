@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 18:26:10 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/11 16:05:45 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/16 17:51:26 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,12 @@ void	dda_render(int tile, t_data *map, t_mlx *mlx)
 	while (x < WIDTH - 1)
 	{
 		camera_x = 2 * x / (double)WIDTH - 1;
-	
-	
 		map->dda.pos_x = map->player.x;
 		map->dda.pos_y = map->player.y;
 		map->dda.ray_dir_x = map->player.dir_x + map->player.plane_x * camera_x;
 		map->dda.ray_dir_y = map->player.dir_y + map->player.plane_y * camera_x;
 		map->dda.map_x = (int)map->dda.pos_x;
-		map->dda.map_y = (int)map->dda.pos_y;
-		// En faisant ce cast en (int), si pos_x = 3.5, alors map_x = 3. Normal : tu es dans la case 3.
-		
+		map->dda.map_y = (int)map->dda.pos_y;		
 		get_delta_dist(map);
 		get_step(map);
 		get_side_dist(map);
@@ -102,7 +98,7 @@ void	get_tex_x(t_data *map)
 	if (map->dda.side == 0 && map->dda.ray_dir_x > 0)
 		map->tex.x = map->tex.width - map->tex.x - 1;
 	if (map->dda.side == 1 && map->dda.ray_dir_y < 0)
-		map->tex.x = map->tex.width - map->tex.x - 1; // pourquoi ce calcul ?	
+		map->tex.x = map->tex.width - map->tex.x - 1;
 }
 
 void	get_wall_height(t_data *map)

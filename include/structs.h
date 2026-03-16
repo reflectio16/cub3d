@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 15:00:00 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/14 15:01:36 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/16 17:07:20 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,14 @@ typedef struct s_ray
 	double	camera_x;
 	double	x;
 	double	y;
+	int		l;
+	int 	step;
+	int		width_x;
+	int		map_x;
+	int		map_y;
+	int		previous_map_x;
+	int		previous_map_y;
+	int		line_len;
 }	t_ray;
 
 typedef struct s_contour

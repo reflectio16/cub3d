@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   c_w_f_render.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 15:11:40 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/14 14:43:06 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/16 15:58:12 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	draw_ceiling(int y, t_data *map, t_mlx *mlx)
 {
 	while (y < map->dda.draw_start)
 	{
-		handle_pixel(map->dda.screen_x, y, mlx, ELECTRIC_BLUE);
+		handle_pixel(map->dda.screen_x, y, mlx, BLUE);
 		y++;
 	}
 }
