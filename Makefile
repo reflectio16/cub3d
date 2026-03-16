@@ -6,7 +6,7 @@
 #    By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/24 14:03:46 by meelma            #+#    #+#              #
-#    Updated: 2026/03/16 18:02:56 by fmoulin          ###   ########.fr        #
+#    Updated: 2026/03/16 19:31:17 by fmoulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ GNL_SRCS    = get_next_line.c get_next_line_utils.c
 PARSE_SRCS  = parse_utils.c parse_texture.c parse_color.c \
               parse_map.c validate_map.c flood_fill.c init.c \
               is_map_closed.c clean.c parse_color_02.c parse_map_02.c
-RENDER_SRCS = render.c events.c move.c rotation.c my_mlx_pxl.c \
-              dda_debug.c c_w_f_render.c load_texture.c wall_floor_utils.c \
+RENDER_SRCS = render.c events.c move.c rotation.c my_mlx_pxl.c dda_render.c dda_utils.c \
+              dda_utils_02.c c_w_f_render.c load_texture.c wall_floor_utils.c ray_render.c \
               ray_utils.c player_pixel_utils.c game_init.c tile_contour.c
 
 # === Object Files ===
