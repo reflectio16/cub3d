@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by meelma, fmoulin.*
+*This project has been created as part of the 42 curriculum by meelma and fmoulin.*
 
 # cub3D
 
