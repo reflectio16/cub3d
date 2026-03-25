@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 15:11:40 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/17 15:21:28 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/25 16:51:00 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	draw_ceiling(int y, t_data *map, t_mlx *mlx)
 {
 	while (y < map->dda.draw_start)
 	{
-		handle_pixel(map->dda.screen_x, y, mlx, BLUE);
+		handle_pixel(map->dda.screen_x, y, mlx, map->colors.ceiling);
 		y++;
 	}
 }
@@ -67,7 +67,7 @@ void	draw_floor(int y, t_data *map, t_mlx *mlx)
 	y = map->dda.draw_end;
 	while (y < HEIGHT)
 	{
-		handle_pixel(map->dda.screen_x, y, mlx, PRUNE);
+		handle_pixel(map->dda.screen_x, y, mlx, map->colors.floor);
 		y++;
 	}
 }
