@@ -6,7 +6,7 @@
 /*   By: meelma <meelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 13:33:30 by meelma            #+#    #+#             */
-/*   Updated: 2026/03/14 14:03:18 by meelma           ###   ########.fr       */
+/*   Updated: 2026/03/25 16:26:27 by meelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ static int	validate_map_chars(char **map)
 		while (map[row][col])
 		{
 			if (map[row][col] != '0' && map[row][col] != '1'
-				&& map[row][col] != ' ' && map[row][col] != 'N'
-					&& map[row][col] != 'S' && map[row][col] != 'E'
-						&& map[row][col] != 'W')
+				&& map[row][col] != 'N' && map[row][col] != 'S'
+					&& map[row][col] != 'E' && map[row][col] != 'W')
 				return (-1);
 			col++;
 		}
