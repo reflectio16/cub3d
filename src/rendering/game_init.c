@@ -6,7 +6,7 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:44:00 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/26 13:01:36 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/26 14:30:05 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,19 @@ static void	malloc_error(void)
 	exit(EXIT_FAILURE);
 }
 
+int	game_loop(t_game *game)
+{
+	rotation_handler(game);
+	move_handler(game);
+	cub_render(&game->mlx, &game->data, game->data.tile);
+	return (0);
+}
+
 void	events_init(t_game *game)
 {
 	mlx_hook(game->mlx.window, KeyPress, KeyPressMask, key_handler, game);
-	mlx_hook(game->mlx.window, KeyRelease, KeyReleaseMask, key_release_handler, game);
+	mlx_hook(game->mlx.window, KeyRelease, KeyReleaseMask, key_release_handler,
+		game);
 	mlx_hook(game->mlx.window, DestroyNotify, StructureNotifyMask,
 		close_handler, game);
 	mlx_loop_hook(game->mlx.connection, game_loop, game);

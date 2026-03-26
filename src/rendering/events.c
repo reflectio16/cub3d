@@ -6,13 +6,13 @@
 /*   By: fmoulin <fmoulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 17:22:41 by fmoulin           #+#    #+#             */
-/*   Updated: 2026/03/26 13:06:10 by fmoulin          ###   ########.fr       */
+/*   Updated: 2026/03/26 14:31:22 by fmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	rotation_handler(t_game *game)
+void	rotation_handler(t_game *game)
 {
 	if (game->data.keys.left)
 		rotate_player(&game->data, -0.05);
@@ -20,7 +20,7 @@ static void	rotation_handler(t_game *game)
 		rotate_player(&game->data, 0.05);
 }
 
-static void	move_handler(t_game *game)
+void	move_handler(t_game *game)
 {
 	if (game->data.keys.w)
 		move_forward(&game->data);
@@ -79,13 +79,5 @@ int	key_release_handler(int keysym, t_game *game)
 		game->data.keys.left = 0;
 	if (keysym == XK_Right)
 		game->data.keys.right = 0;
-	return (0);
-}
-	
-int game_loop(t_game *game)
-{
-	rotation_handler(game);
-	move_handler(game);
-	cub_render(&game->mlx, &game->data, game->data.tile);
 	return (0);
 }
